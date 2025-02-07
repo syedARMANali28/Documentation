@@ -10,7 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 // Import a custom helper function to convert the amount to a sub currency (e.g., cents).
-import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import convertToSubcurrency from "../lib/convertToSubcurrency";
 
 // Define the CheckoutPage component, which receives an 'amount' prop.
 const CheckoutPage = ({ amount }: { amount: number }) => {
