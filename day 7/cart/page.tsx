@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useCart } from "@/hooks/CartContext";
+import { useCart } from "@/hooks/CartContext"; // Import Cart Context
 
 const CartPage = () => {
   const { cart, dispatch } = useCart();
