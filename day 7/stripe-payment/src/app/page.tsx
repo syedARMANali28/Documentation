@@ -2,7 +2,7 @@
 "use client";
 
 // Import the CheckoutPage component and a helper function to convert amounts to subcurrency.
-import CheckoutPage from "@/components/CheckoutPage";
+import CheckoutPage from "../components/CheckoutPage";
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
 
 // Import Stripe-specific components and methods for creating and managing payments.
