@@ -1,4 +1,3 @@
-
 import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import SingleProductUI from "@/app/components/SingleProductUI"; // ✅ Client Component
@@ -13,10 +12,19 @@ interface Product {
   imageUrl: string;
   inventory: number;
   category: { title: string } | null;
-  slug: string; // ✅ Ensure slug is included
+  slug: string;
 }
 
-export default async function SingleProductPage({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: Promise<{ slug: string }>; // ✅ Ensure params is treated as async
+}
+
+// ✅ Ensure params is awaited before usage
+export default async function SingleProductPage({ params }: PageProps) {
+  const { slug } = await params; // ✅ Await params before using
+
+  if (!slug) return notFound(); // ✅ Extra validation
+
   // ✅ Fetch product by slug from Sanity
   const query = `
     *[_type == "products" && slug.current == $slug][0] {
@@ -25,18 +33,18 @@ export default async function SingleProductPage({ params }: { params: { slug: st
     }
   `;
 
-  const product: Product | null = await client.fetch(query, { slug: params.slug });
+  const product: Product | null = await client.fetch(query, { slug });
 
   if (!product) return notFound();
 
-  // ✅ Fetch related products
+  // ✅ Fetch related products (excluding the current one)
   const relatedQuery = `
     *[_type == "products" && slug.current != $slug][0...4] {
       _id, title, price, "imageUrl": image.asset->url, "slug": slug.current
     }
   `;
 
-  const relatedProducts = await client.fetch(relatedQuery, { slug: params.slug });
+  const relatedProducts: Product[] = await client.fetch(relatedQuery, { slug });
 
   return <SingleProductUI product={product} relatedProducts={relatedProducts} />;
 }
