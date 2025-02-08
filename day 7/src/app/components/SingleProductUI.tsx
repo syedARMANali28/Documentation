@@ -71,7 +71,7 @@ const SingleProductUI = ({ product, relatedProducts }: { product: Product; relat
             className="flex items-center gap-2 mr-auto text-white bg-[#007580] border-0 py-4 px-8 text-[16px] focus:outline-none rounded-lg hover:bg-opacity-80 transition-all"
           >
             <Image
-              src="/images/buy 2.png"
+              src="/images/buy2.png"
               alt="Cart Icon"
               width={20}
               height={20}
