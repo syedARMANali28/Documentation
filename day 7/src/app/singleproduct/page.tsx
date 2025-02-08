@@ -30,7 +30,7 @@ const page = (props: Props) => {
 
           <button className="flex items-center gap-2 mr-auto text-white bg-[#007580] border-0 py-4 px-8 text-[16px] focus:outline-none rounded-lg">
             <img
-              src="/images/buy 2.png"
+              src="/images/buy2.png"
               alt="Cart Icon"
               className="w-5 h-5"
             />
