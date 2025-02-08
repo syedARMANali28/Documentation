@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -30,6 +29,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Add Favicon to Fix Console Error */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ClerkProvider>
           <CartProvider>
@@ -42,14 +45,12 @@ export default function RootLayout({
             {/* Conditionally render SignInButton only when the user is signed out */}
             <SignedOut>
               <SignInButton>
-                <button className="text-white border-none cursor-default ">
-                  
-                </button>
+                <button className="text-white border-none cursor-default "></button>
               </SignInButton>
             </SignedOut>
 
             {/* Use AdminUserButton client-side component */}
-            <SignedIn >
+            <SignedIn>
               <AdminUserButton />
             </SignedIn>
 
